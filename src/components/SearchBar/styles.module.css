@@ -1,0 +1,11 @@
+.split {
+  width: 100wh;
+}
+.search_width {
+  width: 90%;
+}
+@media (max-width: 65rem) {
+  .split {
+    justify-content: center;
+  }
+}

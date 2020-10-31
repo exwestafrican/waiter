@@ -1,0 +1,6 @@
+{
+    "editor.formatOnSave": true,
+    "folders": [],
+    "settings": {},
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+}

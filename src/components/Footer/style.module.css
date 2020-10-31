@@ -1,0 +1,4 @@
+.footer_background {
+  background-color: var(--btn-color);
+  min-height: 20vh;
+}

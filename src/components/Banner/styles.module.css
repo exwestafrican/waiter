@@ -1,0 +1,21 @@
+.banner {
+  background: url(../../img/food.jpg),
+    radial-gradient(rgb(219, 216, 216), rgb(214, 211, 211));
+  background-blend-mode: multiply;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.banner_height {
+  height: 35vh;
+}
+.center_element {
+  margin: auto 0;
+}
+
+@media (max-width: 65rem) {
+  .banner_height {
+    height: 25vh;
+  }
+}

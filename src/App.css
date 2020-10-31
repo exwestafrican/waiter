@@ -1,3 +1,32 @@
+.ui.menu:first-child {
+  margin-top: 1rem;
+}
+
+:root {
+  --btn-color: #e74536;
+  --font-color: rgb(45, 49, 56);
+  /* --price-color:rgb(0, 204, 153); */
+  --price-color: rgba(35, 216, 171, 0.87);
+  --border-raidus: 0.4rem;
+  --login-color: #008951;
+}
+
+.section-body {
+  min-height: 80vh;
+}
+
+.margin-top {
+  margin-top: 2rem;
+}
+
+.split {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+
+  /* gap: 2rem; */
+}
+
 .App {
   text-align: center;
 }

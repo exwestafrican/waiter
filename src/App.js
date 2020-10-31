@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import HomeLayout from "./Layout/HomeLayout";
+import { path } from "./url";
+import ResturantLayout from "./Layout/ResturantLayout";
+import OrderLayout from "./Layout/OrderLayout";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CheckoutLayout from "./Layout/CheckoutLayout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={HomeLayout} />
+        <Route path={path.resturantPage} exact component={ResturantLayout} />
+        <Route
+          path={path.resturantPage + "/:name" + "/:id"}
+          exact
+          component={ResturantLayout}
+        />
+        <Route
+          path={path.order + "/:name" + "/:id"}
+          exact
+          component={OrderLayout}
+        />
+        <Route
+          path={path.order + "/checkout"}
+          exact
+          component={CheckoutLayout}
+        />
+      </Switch>
+    </Router>
   );
 }
 
