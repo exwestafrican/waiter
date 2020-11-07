@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import styles from "./styles.module.css";
 import mobileStyles from "./mobileStyles.module.css";
-import { checkoutTotal, getOrCreateCart } from "../../utils";
+import { checkoutTotal, getOrCreateCart, cartItems } from "../../utils";
 import Modal from "../Modal";
 import { processToCheckout } from "../../utils";
 import { useHistory } from "react-router-dom";
@@ -12,9 +12,10 @@ const UsersCart = ({ resturantName }) => {
   const cart = getOrCreateCart();
   // const itemCount = Object.keys(cart).length;
   const total = checkoutTotal(cart);
-  const newCart = [];
+  const shoppingCart = [];
   const [update, setUpdate] = useState(false);
   const [display, setDisplay] = useState(false);
+
 
   const closeModal = () => {
     setDisplay(false);
@@ -23,7 +24,7 @@ const UsersCart = ({ resturantName }) => {
   const cartItems = () => {
     for (let item in cart) {
       if (cart[item].total !== 0) {
-        newCart.push({
+        shoppingCart.push({
           quantity: cart[item].quantity,
           total: cart[item].total,
           name: cart[item].name,
@@ -33,9 +34,11 @@ const UsersCart = ({ resturantName }) => {
     }
   };
 
+
+
   const updateCart = () => {
     // console.log("updating");
-    setUpdate(true);
+    setUpdate(!update);
   };
   cartItems();
 
@@ -56,7 +59,7 @@ const UsersCart = ({ resturantName }) => {
       <div className={styles["users-cart"]}>
         <h3>{resturantName}</h3>
 
-        {newCart.map((item) => (
+        {shoppingCart.map((item) => (
           <CartItem
             key={item.id}
             id={item.id}
@@ -91,9 +94,8 @@ const UsersCart = ({ resturantName }) => {
         displayModal={display}
         closeCallback={closeModal}
         total={total}
-        cartList={newCart}
+        cartList={shoppingCart}
         resturantName={resturantName}
-        updateCart={updateCart}
       />
       <MobileCart />
       <DesktopCart />

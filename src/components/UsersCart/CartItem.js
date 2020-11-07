@@ -4,7 +4,7 @@ import { RemoveItemFromCart } from "../../utils";
 
 const CartItem = ({ name, quantity, total, id, updateCart }) => {
   const onClickHandler = () => {
-    console.log("done");
+    console.log("done", id);
     RemoveItemFromCart(id);
     updateCart();
   };

@@ -104,3 +104,20 @@ export const makeCamelCase = (word) => {
   }
   return word.join("");
 };
+
+export const cartItems = () => {
+  "get list of items in cart";
+  const cart = getOrCreateCart();
+  const cartList = [];
+  for (let item in cart) {
+    if (cart[item].total !== 0) {
+      cartList.push({
+        quantity: cart[item].quantity,
+        total: cart[item].total,
+        name: cart[item].name,
+        id: cart[item].itemId,
+      });
+    }
+  }
+  return cartList;
+};
