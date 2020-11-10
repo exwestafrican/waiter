@@ -2,20 +2,19 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import Banner from "../../components/Banner";
 import header from "../../img/header.png";
-import FoodItem from "../../components/FoodItem";
+import Order from "../../components/Order";
 import Footer from "../../components/Footer";
 import { useRouteMatch } from "react-router-dom";
 import { fetchData } from "../../Api";
 import { apiPath } from "../../url";
 import Loader from "../../components/Loader";
+import { addResturantToLocalStorage } from "../../utils/resturant";
+import { createCart } from "../../utils/shoppingCart";
 
 const OrderLayout = () => {
   const [state, setState] = useState({
     foodItems: [],
     isLoading: true,
-    resturanName: null,
-    resturantId: null,
-    schoolName: null,
   });
   const param = useRouteMatch().params;
 
@@ -27,10 +26,13 @@ const OrderLayout = () => {
       setState({
         foodItems: resturant[0].items,
         isLoading: false,
-        resturanName: resturant[0].restaurantName,
-        resturantId: resturant[0].id,
-        schoolName: resturant[0].schoolName,
       });
+      createCart(param.id);
+      addResturantToLocalStorage(
+        resturant[0].restaurantName,
+        resturant[0].id,
+        resturant[0].schoolName
+      );
     };
     getFoodItems();
   }, [param.id]);
@@ -43,12 +45,7 @@ const OrderLayout = () => {
       return state.isLoading ? (
         <Loader />
       ) : (
-        <FoodItem
-          resturantMenu={state.foodItems}
-          resturantName={state.resturanName}
-          resturantId={state.resturantId}
-          schoolName={state.schoolName}
-        />
+        <Order foodItems={state.foodItems} />
       );
     }
   };
@@ -57,7 +54,7 @@ const OrderLayout = () => {
       <NavBar />
       <Banner showNav={false} image={header} />
       <section className="section-body">
-        <div className="container margin-top">
+        <div className="container margin-top" style={{ position: "relative" }}>
           <Display />
         </div>
       </section>

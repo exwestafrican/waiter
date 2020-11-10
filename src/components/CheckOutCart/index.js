@@ -1,39 +1,29 @@
 import React from "react";
+
+import { currentResturant } from "../../utils/resturant";
 import {
-  getOrCreateCart,
+  getCartFromLocalStorage,
+  shoppingCartList,
+  itemTotal,
   checkoutTotal,
-  getCurrentResturantFromLocalStrorage,
-} from "../../utils";
+  FEE,
+} from "../../utils/shoppingCart";
 
 const CheckOutCart = () => {
-  const cart = getOrCreateCart();
-  const itemCount = Object.keys(cart).length;
-  const newCart = [];
-  const deliveryFee = 100;
-  const resturant = getCurrentResturantFromLocalStrorage();
-  const total = checkoutTotal(cart);
+  const resturant = currentResturant();
+  const shoppingCart = getCartFromLocalStorage();
+  const total = checkoutTotal(shoppingCart);
+  const cartList = shoppingCartList(shoppingCart);
+  const itemCount = Object.keys(shoppingCart).length;
 
-  const cartItems = () => {
-    for (let item in cart) {
-      if (cart[item].total !== 0) {
-        newCart.push({
-          quantity: cart[item].quantity,
-          total: cart[item].total,
-          name: cart[item].name,
-          id: cart[item].itemId,
-        });
-      }
-    }
-  };
-
-  cartItems();
-  const Items = ({ name, total }) => {
+  const Items = ({ name, addonPrice, quantity, baseprice }) => {
+    const total = itemTotal(quantity, addonPrice, baseprice);
     return (
       <li className="list-group-item d-flex justify-content-between lh-condensed">
         <div>
           <h6 className="my-0">{name}</h6>
         </div>
-        <span className="text-muted">{total}</span>
+        <span className="text-muted">₦{total}</span>
       </li>
     );
   };
@@ -44,19 +34,25 @@ const CheckOutCart = () => {
         <span className="badge badge-secondary badge-pill">{itemCount}</span>
       </h4>
       <ul className="list-group mb-3">
-        {newCart.map((item) => (
-          <Items key={item.itemId} name={item.name} total={item.total} />
+        {cartList.map((item) => (
+          <Items
+            key={item.itemId}
+            name={item.name}
+            addonPrice={item.addonPrice}
+            quantity={item.quantity}
+            baseprice={item.baseprice}
+          />
         ))}
         <li className="list-group-item d-flex justify-content-between bg-light">
           <div className="text-success">
             <h6 className="my-0">Delivery Cost</h6>
-            <small>EXAMPLECODE</small>
+            <small>plus service charge</small>
           </div>
-          <span className="text-success">${deliveryFee}</span>
+          <span className="text-success">₦{FEE} </span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
           <span>Total (NGN)</span>
-          <strong>${total + deliveryFee}</strong>
+          <strong>₦{total + FEE}</strong>
         </li>
       </ul>
     </>

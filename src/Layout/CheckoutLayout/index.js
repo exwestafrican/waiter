@@ -16,9 +16,7 @@ const CheckoutLayout = () => {
         <div className={`${styles["left-content"]}`}>
           <CheckOutForm />
         </div>
-        <div className={styles["right-content"]}>
-          <CheckOutCart />
-        </div>
+        <div className={styles["right-content"]}><CheckOutCart /></div>
       </div>
       <Footer />
     </>

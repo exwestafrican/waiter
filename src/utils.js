@@ -35,6 +35,7 @@ export const getOrCreateCart = () => {
   }
 };
 const createCart = () => {
+ 
   const cart = {};
   saveCartInLocalStorage(cart);
   return cart;
@@ -93,7 +94,8 @@ export const getCurrentResturantFromLocalStrorage = () => {
   return localStorageDict.getItemFromLocalStorage("resturant");
 };
 
-export const processToCheckout = (history) => history.push(path.checkout);
+// export const processToCheckout = (history) => history.push(path.checkout);
+
 
 export const makeCamelCase = (word) => {
   word = word.toLowerCase().split(" ");
@@ -104,3 +106,5 @@ export const makeCamelCase = (word) => {
   }
   return word.join("");
 };
+
+

@@ -1,0 +1,36 @@
+.cart-button {
+    position: fixed;
+    bottom: 1.2rem;
+    left: 0;
+    display: flex;
+    z-index: 300;
+    opacity: 1;
+    visibility: visible;
+    width: 100vw;
+    height: 4rem;
+  }
+  
+  .cart-button button {
+    border: none;
+    width: 90%;
+    letter-spacing: 0.14px;
+    font-weight: 400;
+    border-radius: 2rem;
+    margin: auto;
+    height: 90%;
+    background-color: var(--btn-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    justify-content: space-between;
+    text-transform: uppercase;
+    outline: none;
+  }
+  
+  @media (min-width: 65rem) {
+    .cart-button {
+      display: none;
+    }
+  }
+  
