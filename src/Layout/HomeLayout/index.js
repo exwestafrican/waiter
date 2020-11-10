@@ -24,6 +24,7 @@ const HomeLayout = () => {
     allResturants();
   }, []);
 
+ 
   const Display = () => {
     return state.isLoading ? (
       <Loader />

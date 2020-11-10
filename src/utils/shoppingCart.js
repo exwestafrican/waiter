@@ -30,14 +30,20 @@ export const findItemInCart = (id) => {
 
 export const updateCartStorage = (newCart) => {
   const jsoncart = JSON.stringify(newCart);
+  console.log("new cart", jsoncart);
   localStorage.setItem(cart, jsoncart);
 };
 
 export const createCart = (newResturantID) => {
-  const oldResturantID = currentResturant().resturantId;
-  if (newResturantID == oldResturantID) return;
-  const value = JSON.stringify({});
-  localStorage.setItem(cart, value);
+  try {
+    const oldResturantID = currentResturant().resturantId;
+    if (newResturantID == oldResturantID) return;
+    const value = JSON.stringify({});
+    localStorage.setItem(cart, value);
+  } catch (error) {
+    const value = JSON.stringify({});
+    localStorage.setItem(cart, value);
+  }
 };
 
 export const emptyCart = () => {
