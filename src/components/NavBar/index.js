@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../logo.svg";
+import logo from "../../logo.PNG";
 import { path } from "../../url";
 import { Link } from "react-router-dom";
 import user from "../../auth";
