@@ -1,7 +1,25 @@
+.gap {
+  margin: 2rem 0;
+}
+
+.btn-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  color: var(--price-color);
+}
+
+.split {
+  display: flex;
+  justify-content: space-between;
+}
+
 .cart-modal-checkout {
   display: flex;
   justify-content: center;
-  /* background-color: pink; */
 }
 
 .item-detail-button-layout button {
@@ -23,4 +41,23 @@
 .add-on-btn-display button {
   background-color: var(--price-color);
   color: #fff;
+}
+
+.users-cart__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: rgba(185, 181, 181, 0.384); */
+}
+.users-cart__description div p {
+  margin: 0;
+  vertical-align: middle;
+}
+
+.users-cart__description div {
+  display: flex;
+  vertical-align: middle;
+  gap: 2rem;
+  padding: 1rem 0.5rem;
+  align-items: center;
 }

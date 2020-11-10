@@ -1,56 +1,84 @@
 import React, { useState } from "react";
 import Select from "../Select";
+import Input from "../Input";
+import { currentResturant, isOpen } from "../../utils/resturant";
 import {
-  makeCamelCase,
-  getCurrentResturantFromLocalStrorage,
-} from "../../utils";
+  getCartFromLocalStorage,
+  checkoutTotal,
+  ApiShoppingList,
+  FEE,
+  emptyCart,
+} from "../../utils/shoppingCart";
+import { handleNotification } from "../../utils/notification";
+import { makeOrder } from "../../Api";
+import { path } from "../../url";
+import { useHistory } from "react-router-dom";
+import user from "../../auth";
 
 const CheckOutForm = () => {
+  const history = useHistory();
+  const [state, setState] = useState({
+    loading: false,
+    text: "ORDER",
+    color: "btn-primary",
+    submit: false,
+  });
+  const userDetail = user.details();
   // only open if cart is not empty
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const resturant = getCurrentResturantFromLocalStrorage();
-    // console.log(formData.get("paymentOption"));
-    const data = {
-      customerId: 1,
-      restaurantId: resturant.resturantId,
-      subTotal: 89,
-      fee: 200,
-      address: formData.get("address"),
-      // did user select pay onnline
-      onlinePayment:
-        "Pay Online" === formData.get("paymentOption") ? true : false,
-    };
-    console.log(data);
+    if (isOpen()) {
+      const formData = new FormData(e.target);
+      const resturant = currentResturant();
+      // console.log(formData.get("paymentOption"));
+      const cart = getCartFromLocalStorage();
+      const cartList = ApiShoppingList(cart);
+      const subTotal = checkoutTotal(cart);
+
+      const data = {
+        customerId: userDetail.userId,
+        restaurantId: resturant.resturantId,
+        subTotal: subTotal,
+        fee: FEE,
+        address: formData.get("address"),
+        // did user select pay onnline
+        onlinePayment:
+          "Pay Online" === formData.get("paymentOption") ? true : false,
+        itemList: [cartList],
+      };
+      // empty cache
+
+      setState({ ...state, loading: true });
+      // console.log(data);
+      makeOrder(data, success, failed);
+    } else {
+      handleNotification("Error", "All Resturants are closed");
+    }
   };
 
-  const Input = ({ labelName, formfor, typeOfForm, content, required }) => {
-    const [value, setValue] = useState("");
-    const handleChange = (e) => {
-      setValue(e.target.value);
-    };
-    return (
-      <div className="form-group">
-        <label formfor={formfor}>{labelName}</label>
-        <input
-          name={makeCamelCase(labelName)}
-          type={typeOfForm}
-          className="form-control"
-          id={formfor}
-          aria-describedby={typeOfForm + "Help"}
-          value={value}
-          onChange={handleChange}
-          required={required}
-        />
-        <small id={typeOfForm + "Help"} className="form-text text-muted">
-          {content}
-        </small>
-      </div>
-    );
+  const redirectHome = () => history.push(path.home);
+
+  const success = () => {
+    setState({
+      color: "btn-success",
+      text: "SUCCESSFUL",
+      loading: false,
+      submit: true,
+    });
+    emptyCart();
+    setTimeout(redirectHome, 2000);
   };
 
+  const failed = () => {
+    setState({
+      ...state,
+      color: "btn-danger",
+      loading: false,
+      text: "TRY AGAIN",
+    });
+  };
+  console.log(isOpen());
   return (
     <form onSubmit={handleSubmit}>
       <Input
@@ -58,24 +86,30 @@ const CheckOutForm = () => {
         formfor={"email"}
         typeOfForm={"email"}
         content={"We'll never share your email with anyone else."}
+        required={true}
+        prefilledValue={userDetail.email}
       />
       <Input
         labelName={"Name"}
         formfor={"name"}
         typeOfForm={"text"}
         content={"What's your name champ?"}
+        required={true}
+        prefilledValue={userDetail.name}
       />
       <Input
         labelName={"Phone Number"}
         formfor={"number"}
         typeOfForm={"text"}
         content={"E.g 0809934588 "}
+        required={true}
+        prefilledValue={userDetail.phoneNumber}
       />
       <Select
         defaultText={"Select Payment Method"}
         optionsName={"paymentOption"}
         selectOptions={[
-          { id: 1, name: "Pay Online" },
+          // { id: 1, name: "Pay Online" },
           { id: 2, name: "Pay Delivery" },
         ]}
       />
@@ -87,8 +121,12 @@ const CheckOutForm = () => {
         required={true}
       />
       <div style={{ margin: "2rem 0" }}>
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-          ORDER
+        <button
+          type="submit"
+          className={`btn ${state.color} btn-lg btn-block`}
+          disabled={state.submit ? true : false}
+        >
+          {state.loading === true ? "Loading..." : state.text}
         </button>
       </div>
     </form>

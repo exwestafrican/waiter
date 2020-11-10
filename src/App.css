@@ -13,14 +13,19 @@
 
 .section-body {
   min-height: 80vh;
+
 }
 
 .margin-top {
   margin-top: 2rem;
 }
+.overflow {
+  overflow-y: auto;
+  display: block;
+}
 
 .split {
-  position: relative;
+  /* position: relative; */
   display: flex;
   justify-content: space-around;
 

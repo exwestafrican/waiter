@@ -1,6 +1,7 @@
 import React from "react";
 import Resturant from "./main";
 import resturantImage from "../../img/resturant.jpeg";
+import { isOpen } from "../../utils/resturant";
 
 const Resturants = ({ resturants = [] }) => {
   // console.log(resturants);
@@ -13,7 +14,8 @@ const Resturants = ({ resturants = [] }) => {
       image={resturantImage}
       resturantName={resturant.restaurantName}
       deliveryTime={30}
-      status={resturant.open}
+      // status={resturant.open}
+      status={isOpen()}
     />
   ));
 };
