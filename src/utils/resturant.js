@@ -20,7 +20,7 @@ export const addResturantToLocalStorage = (
 export const isOpen = () => {
   const closingTime = new Date();
   const openingTime = new Date();
-  openingTime.setHours(10, 0);
+  openingTime.setHours(9, 0);
   closingTime.setHours(20, 30);
   const currentTime = new Date();
   if (
