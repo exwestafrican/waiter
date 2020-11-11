@@ -1,6 +1,5 @@
 import React from "react";
 import Resturant from "./main";
-import resturantImage from "../../img/resturant.jpeg";
 import { isOpen } from "../../utils/resturant";
 
 const Resturants = ({ resturants = [] }) => {
@@ -11,7 +10,7 @@ const Resturants = ({ resturants = [] }) => {
       key={resturant.id}
       id={resturant.id}
       university={resturant.schoolName}
-      image={resturantImage}
+      image={"https://cdn.filestackcontent.com/MgaLQsTTU2n9wN0MtYnQ"}
       resturantName={resturant.restaurantName}
       deliveryTime={30}
       // status={resturant.open}

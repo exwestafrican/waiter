@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cart from "../Cart";
 import styles from "./styles.module.css";
-import image from "../../img/eggs.jpg";
+
 
 const Item = ({ callback, itemId, baseprice, addonPrice, name, category }) => {
   return (
@@ -10,7 +10,10 @@ const Item = ({ callback, itemId, baseprice, addonPrice, name, category }) => {
       onClick={() => callback(itemId, baseprice, addonPrice, name)}
     >
       <div className={styles["item-component_img"]}>
-        <img src={image} alt={"Rice"} />
+        <img
+          src={"https://cdn.filestackcontent.com/Hy9w47dlRXK3PeZoal5h"}
+          alt={"Rice"}
+        />
       </div>
 
       <div className={styles["item-component_discription"]}>

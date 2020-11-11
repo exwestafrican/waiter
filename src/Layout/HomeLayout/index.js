@@ -24,7 +24,6 @@ const HomeLayout = () => {
     allResturants();
   }, []);
 
- 
   const Display = () => {
     return state.isLoading ? (
       <Loader />
@@ -37,7 +36,10 @@ const HomeLayout = () => {
     <div>
       <section className="section-body">
         <NavBar />
-        <Banner image={foodImage} showNav={false} />
+        <Banner
+          image={"https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw"}
+          showNav={false}
+        />
         <div className="margin-top">
           <SearchBar searchText={"Find Your Favourite Place...."} />
         </div>
