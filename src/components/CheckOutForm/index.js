@@ -52,6 +52,11 @@ const CheckOutForm = () => {
       setState({ ...state, loading: true });
       // console.log(data);
       makeOrder(data, success, failed);
+      handleNotification(
+        "Sucess",
+        "Your order was sucessfull so you in 30mins or less",
+        "success"
+      );
     } else {
       handleNotification("Error", "All Resturants are closed");
     }
@@ -78,7 +83,7 @@ const CheckOutForm = () => {
       text: "TRY AGAIN",
     });
   };
-  console.log(isOpen());
+ 
   return (
     <form onSubmit={handleSubmit}>
       <Input

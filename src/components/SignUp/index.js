@@ -60,7 +60,7 @@ const SignUp = () => {
         labelName={"Password"}
         formfor={"password"}
         typeOfForm={"password"}
-        content={"We can keep a secrete."}
+        content={"We can keep a secret."}
         required={true}
       />
       <Input
