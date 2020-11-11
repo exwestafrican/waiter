@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import Banner from "../../components/Banner";
-import header from "../../img/header.png";
 import Order from "../../components/Order";
 import Footer from "../../components/Footer";
 import { useRouteMatch } from "react-router-dom";
@@ -52,7 +51,10 @@ const OrderLayout = () => {
   return (
     <>
       <NavBar />
-      <Banner showNav={false} image={header} />
+      <Banner
+        showNav={false}
+        image={"https://cdn.filestackcontent.com/uSwJlPECTRq2s3vzpCFw"}
+      />
       <section className="section-body">
         <div className="container margin-top" style={{ position: "relative" }}>
           <Display />

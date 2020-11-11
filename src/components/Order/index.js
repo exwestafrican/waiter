@@ -27,9 +27,7 @@ const Order = ({ foodItems }) => {
 
   const addItemtoCart = (itemId, baseprice, addonPrice, name) => {
     const shoppingCart = getCartFromLocalStorage();
-    console.log(shoppingCart);
     shoppingCart[itemId] = { itemId, name, quantity: 1, baseprice, addonPrice };
-    console.log(shoppingCart);
     updateCartStorage(shoppingCart);
     return shoppingCart;
   };

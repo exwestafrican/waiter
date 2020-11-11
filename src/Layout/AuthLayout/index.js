@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "../../components/Footer";
 
 import styles from "./styles.module.css";
-import backgroundImage from "../../img/header.png";
+
 import NavBar from "../../components/NavBar";
 
 import user from "../../auth";
@@ -18,11 +18,11 @@ const AuthLayout = ({ component: Component, ...args }) => {
   return (
     <div>
       <NavBar />
-  
+
       <div className={styles["split"]}>
         <section className={styles["left-side"]}>
           <img
-            src={backgroundImage}
+            src={"https://cdn.filestackcontent.com/uSwJlPECTRq2s3vzpCFw"}
             className={styles["img-section"]}
             alt="logo"
           />

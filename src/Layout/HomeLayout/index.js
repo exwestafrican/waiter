@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../Api";
 import { path, apiPath } from "../../url";
-import foodImage from "../../img/food.jpg";
+
 import Banner from "../../components/Banner";
 import Resturants from "../../components/Resturants";
 import styles from "./styles.module.css";
@@ -24,7 +24,6 @@ const HomeLayout = () => {
     allResturants();
   }, []);
 
- 
   const Display = () => {
     return state.isLoading ? (
       <Loader />
@@ -37,7 +36,10 @@ const HomeLayout = () => {
     <div>
       <section className="section-body">
         <NavBar />
-        <Banner image={foodImage} showNav={false} />
+        <Banner
+          image={"https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw"}
+          showNav={false}
+        />
         <div className="margin-top">
           <SearchBar searchText={"Find Your Favourite Place...."} />
         </div>
