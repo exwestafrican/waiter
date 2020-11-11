@@ -30,7 +30,7 @@ export const findItemInCart = (id) => {
 
 export const updateCartStorage = (newCart) => {
   const jsoncart = JSON.stringify(newCart);
-  console.log("new cart", jsoncart);
+
   localStorage.setItem(cart, jsoncart);
 };
 

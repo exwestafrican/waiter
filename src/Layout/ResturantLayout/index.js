@@ -10,7 +10,6 @@ import { useRouteMatch } from "react-router-dom";
 import { fetchData } from "../../Api";
 import { apiPath } from "../../url";
 import Banner from "../../components/Banner";
-import foodImage from "../../img/food.jpg";
 
 const ResturantLayout = () => {
   const param = useRouteMatch().params;
@@ -43,7 +42,10 @@ const ResturantLayout = () => {
   return (
     <>
       <Navbar />
-      <Banner image={foodImage} showNav={false} />
+      <Banner
+        image={"https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw"}
+        showNav={false}
+      />
       <section className="section-body margin-top">
         <SearchBar searchText={"Find Your Favourite Place...."} />
         <Categroies currentSchool={param.name} />

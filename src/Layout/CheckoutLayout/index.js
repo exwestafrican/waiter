@@ -4,19 +4,21 @@ import CheckOutCart from "../../components/CheckOutCart";
 import CheckOutForm from "../../components/CheckOutForm";
 import NavBar from "../../components/NavBar";
 import styles from "./styles.module.css";
-import bannerImage from "../../img/resturant.jpeg";
+
 import Footer from "../../components/Footer";
 
 const CheckoutLayout = () => {
   return (
     <>
       <NavBar />
-      <Banner image={bannerImage} />
+      <Banner image={"https://cdn.filestackcontent.com/MgaLQsTTU2n9wN0MtYnQ"} />
       <div className={`${styles.split} container marign-top section-body`}>
         <div className={`${styles["left-content"]}`}>
           <CheckOutForm />
         </div>
-        <div className={styles["right-content"]}><CheckOutCart /></div>
+        <div className={styles["right-content"]}>
+          <CheckOutCart />
+        </div>
       </div>
       <Footer />
     </>

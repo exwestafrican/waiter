@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../Api";
 import { path, apiPath } from "../../url";
-import foodImage from "../../img/food.jpg";
+
 import Banner from "../../components/Banner";
 import Resturants from "../../components/Resturants";
 import styles from "./styles.module.css";
