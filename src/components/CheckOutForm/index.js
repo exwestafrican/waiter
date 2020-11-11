@@ -47,16 +47,10 @@ const CheckOutForm = () => {
           "Pay Online" === formData.get("paymentOption") ? true : false,
         itemList: [cartList],
       };
-      // empty cache
+      
 
       setState({ ...state, loading: true });
-      // console.log(data);
       makeOrder(data, success, failed);
-      handleNotification(
-        "Sucess",
-        "Your order was sucessfull so you in 30mins or less",
-        "success"
-      );
     } else {
       handleNotification("Error", "All Resturants are closed");
     }
@@ -72,6 +66,11 @@ const CheckOutForm = () => {
       submit: true,
     });
     emptyCart();
+    handleNotification(
+      "Sucess",
+      "Your order was sucessfull so you in 30mins or less",
+      "success"
+    );
     setTimeout(redirectHome, 2000);
   };
 
@@ -83,7 +82,7 @@ const CheckOutForm = () => {
       text: "TRY AGAIN",
     });
   };
- 
+
   return (
     <form onSubmit={handleSubmit}>
       <Input
