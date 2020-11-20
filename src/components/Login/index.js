@@ -53,7 +53,7 @@ const Login = () => {
           labelName={"Password"}
           formfor={"password"}
           typeOfForm={"password"}
-          content={"We can keep a secrete."}
+          content={"We can keep a secret."}
           required={true}
         />
         <button class="btn btn-lg btn-success btn-block" type="submit">

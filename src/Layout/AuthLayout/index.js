@@ -18,7 +18,6 @@ const AuthLayout = ({ component: Component, ...args }) => {
   return (
     <div>
       <NavBar />
-
       <div className={styles["split"]}>
         <section className={styles["left-side"]}>
           <img

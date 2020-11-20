@@ -45,7 +45,7 @@ const CheckOutCart = () => {
         ))}
         <li className="list-group-item d-flex justify-content-between bg-light">
           <div className="text-success">
-            <h6 className="my-0">Delivery Cost</h6>
+            <h6 className="my-0">Pack Cost</h6>
             <small>plus service charge</small>
           </div>
           <span className="text-success">₦{FEE} </span>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "../Select";
 import Input from "../Input";
+import BlockButton from "../BlockButton";
 import { currentResturant, isOpen } from "../../utils/resturant";
 import {
   getCartFromLocalStorage,
@@ -47,7 +48,6 @@ const CheckOutForm = () => {
           "Pay Online" === formData.get("paymentOption") ? true : false,
         itemList: [cartList],
       };
-      
 
       setState({ ...state, loading: true });
       makeOrder(data, success, failed);
@@ -125,13 +125,18 @@ const CheckOutForm = () => {
         required={true}
       />
       <div style={{ margin: "2rem 0" }}>
-        <button
+        {/* <button
           type="submit"
           className={`btn ${state.color} btn-lg btn-block`}
           disabled={state.submit ? true : false}
         >
           {state.loading === true ? "Loading..." : state.text}
-        </button>
+        </button> */}
+        <BlockButton
+          name={state.loading === true ? "Loading..." : state.text}
+          buttonType={"submit"}
+          disabled={state.submit ? true : false}
+        />
       </div>
     </form>
   );

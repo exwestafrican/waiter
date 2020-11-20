@@ -38,7 +38,6 @@ const HomeLayout = () => {
         <NavBar />
         <Banner
           image={"https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw"}
-          showNav={false}
         />
         <div className="margin-top">
           <SearchBar searchText={"Find Your Favourite Place...."} />
@@ -50,10 +49,10 @@ const HomeLayout = () => {
         </div>
         <div className={`${styles.pagination} container`}>
           <Link
-            class="ui right labeled icon button green"
+            className="ui right labeled icon button green"
             to={path.resturantPage}
           >
-            <i class="right arrow icon"></i>
+            <i className="right arrow icon"></i>
             MORE RESTURANTS
           </Link>
         </div>

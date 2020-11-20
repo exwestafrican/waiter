@@ -21,12 +21,11 @@ const Resturant = ({
   const resturantStatus = (isOpen) => {
     return {
       color: isOpen === true ? "green" : "red",
-      lock: isOpen === true ? "lock" : "lock open",
+      lock: isOpen === true ? "lock open" : "lock",
     };
   };
   const link = status;
 
-  console.log(status);
   const handleClick = (e) => {
     if (status === false) {
       console.log("here");
@@ -34,6 +33,7 @@ const Resturant = ({
       handleNotification("Error", "All resturants are closed");
     }
   };
+ 
   return (
     <div>
       <Link
@@ -43,8 +43,10 @@ const Resturant = ({
         onClick={(e) => handleClick(e)}
       >
         <img src={image} alt={resturantName} />
-        <div class={`ui ${resturantStatus(status).color} right corner label`}>
-          <i class={`lock icon`}></i>
+        <div
+          className={`ui ${resturantStatus(status).color} right corner label`}
+        >
+          <i className={`${resturantStatus(status).lock} icon`}></i>
         </div>
         <h5 className={styles.resturant_name}>
           {resturantName} <small>({university})</small>

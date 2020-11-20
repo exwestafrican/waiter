@@ -1,0 +1,9 @@
+
+.button-style,
+.button-style:hover,
+.button-style:focus {
+  background-color: #f68b1e;
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}

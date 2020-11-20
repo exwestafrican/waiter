@@ -2,7 +2,7 @@ import { currentResturant } from "./resturant";
 import { path } from "../url";
 
 const cart = "shoppingCart";
-export const FEE = 150;
+export const FEE = 50;
 
 export const cartInLocalStorage = () => {
   if (localStorage.getItem(cart)) return true;

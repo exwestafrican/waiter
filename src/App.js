@@ -12,6 +12,7 @@ import CheckoutLayout from "./Layout/CheckoutLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import AboutUs from "./Layout/About Us";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path={"/upload"} exact component={ImageUpload}></Route>
           <Route path={path.login} exact component={LoginLayout}></Route>
           <Route path={path.signup} exact component={SignUpLayout}></Route>
+          <Route path={"/about"} exact component={AboutUs}></Route>
         </Switch>
       </Router>
     </div>

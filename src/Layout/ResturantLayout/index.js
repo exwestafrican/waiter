@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/NavBar";
+import NavBar from "../../components/NavBar";
 import Resturants from "../../components/Resturants";
 import Categroies from "../../components/Categories";
 import Footer from "../../components/Footer";
@@ -41,11 +41,11 @@ const ResturantLayout = () => {
 
   return (
     <>
-      <Navbar />
-      <Banner
+      <NavBar />
+      {/* <Banner
         image={"https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw"}
         showNav={false}
-      />
+      /> */}
       <section className="section-body margin-top">
         <SearchBar searchText={"Find Your Favourite Place...."} />
         <Categroies currentSchool={param.name} />

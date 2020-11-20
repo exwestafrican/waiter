@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Counter from "../Counter";
 import Remove from "../Remove";
+import BlockButton from "../BlockButton";
 import style from "./styles.module.css";
 import {
   shoppingCartList,
@@ -35,10 +36,6 @@ const Cart = ({ shoppingCart }) => {
         <div className={style["split"]}>
           <div>
             <Remove callback={RemoveItemFromCart} id={itemId} />
-            <span>
-              {" "}
-              <small>Remove</small>{" "}
-            </span>
           </div>
           <div>
             <Counter
@@ -70,13 +67,11 @@ const Cart = ({ shoppingCart }) => {
           basePrice={item.baseprice}
         />
       ))}
-      <button
-        type="button"
-        className="btn btn-danger btn-lg btn-block"
-        onClick={() => processToCheckout(history)}
-      >
-        <small>CHECKOUT</small>
-      </button>
+
+      <BlockButton
+        name={"CHECK OUT"}
+        callBack={() => processToCheckout(history)}
+      />
     </section>
   );
 };

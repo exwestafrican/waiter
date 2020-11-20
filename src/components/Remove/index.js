@@ -4,7 +4,14 @@ import style from "./styles.module.css";
 const Remove = ({ callback, id }) => {
   return (
     <>
-      <svg
+      <button
+        type="button"
+        className={`btn ${style["make-round"]}`}
+        onClick={() => callback(id)}
+      >
+        <ion-icon name="trash-outline"></ion-icon> <small>Remove</small>
+      </button>
+      {/* <svg
         width="1em"
         height="1em"
         viewBox="0 0 16 16"
@@ -21,7 +28,7 @@ const Remove = ({ callback, id }) => {
           fillRule="evenodd"
           d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
         />
-      </svg>{" "}
+      </svg>{" "} */}
     </>
   );
 };

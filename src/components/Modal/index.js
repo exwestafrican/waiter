@@ -10,6 +10,7 @@ import {
   checkoutTotal,
   processToCheckout,
 } from "../../utils/shoppingCart";
+import BlockButton from "../BlockButton";
 
 const Modal = ({
   displayModal,
@@ -36,17 +37,13 @@ const Modal = ({
     return (
       <div className={styles["gap"]}>
         <div className={styles["split"]}>
-          <h5>{name}</h5>
+          <h5 className={styles["make-bold"]}>{name}</h5>
           <small className={styles["price"]}>₦{addonPrice}</small>
         </div>
 
         <div className={styles["split"]}>
           <div>
             <Remove callback={RemoveItemFromCart} id={itemId} />
-            <span>
-              {" "}
-              <small>Remove</small>{" "}
-            </span>
           </div>
           <div>
             <Counter
@@ -93,15 +90,10 @@ const Modal = ({
             ))}
           </div>
           <div className={` ${styles["cart-modal-checkout"]} modal-footer`}>
-            <div
-              className={` ${styles["item-detail-button-layout"]}
-                ${styles["add-on-btn-display"]}`}
-            >
-              <button type="submit " onClick={() => processToCheckout(history)}>
-                <p>CHECKOUT</p>
-                <p></p>
-              </button>
-            </div>
+            <BlockButton
+              name={"CHECK OUT"}
+              callBack={() => processToCheckout(history)}
+            />
           </div>
         </div>
       </div>

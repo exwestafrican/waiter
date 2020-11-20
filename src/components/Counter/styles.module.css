@@ -4,3 +4,11 @@
 .pointer-space {
   margin: 0 0.5rem;
 }
+
+ion-icon {
+  vertical-align: middle;
+}
+
+.set-border {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
