@@ -108,4 +108,9 @@ export const checkoutTotal = (cart) => {
   return checkout;
 };
 
+const deliveryCharges = {
+  hostel: 100,
+  resturantPickUp: 50,
+};
+
 export const processToCheckout = (history) => history.push(path.checkout);

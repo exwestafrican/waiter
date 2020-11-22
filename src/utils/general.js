@@ -27,7 +27,7 @@ export const UniqueCategories = (items) => {
       const item_list = categories[item.category];
       item_list.push({ ...item });
     } catch (TypeError) {
-      categories[item.category] = [];
+      categories[item.category] = [item];
     }
   }
   return categories;

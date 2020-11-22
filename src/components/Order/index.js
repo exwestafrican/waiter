@@ -58,6 +58,7 @@ const Order = ({ foodItems }) => {
 
   const Category = ({ categoryName }) => {
     const itemInCategory = categoryContent[categoryName];
+
     return (
       <section>
         <header className={style["title"]}>{categoryName}</header>
