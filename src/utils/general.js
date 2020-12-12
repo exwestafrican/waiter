@@ -36,3 +36,5 @@ export const UniqueCategories = (items) => {
 export const redirectHome = (history) => history.push(path.home);
 export const processToLogin = (history) => history.push(path.login);
 export const seeAllResturants = (history) => history.push(path.resturantPage);
+
+

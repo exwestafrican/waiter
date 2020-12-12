@@ -19,11 +19,26 @@ const Order = ({ foodItems }) => {
   const categoryContent = UniqueCategories(foodItems);
   const categories = Object.keys(categoryContent).reverse();
 
-  const updateCart = (itemId, baseprice, addonPrice, name, available) => {
+  const updateCart = (
+    itemId,
+    baseprice,
+    addonPrice,
+    name,
+    available,
+    packAmount,
+    packed
+  ) => {
     if (available) {
       const item = findItemInCart(itemId);
       if (item === null) {
-        const shoppingCart = addItemtoCart(itemId, baseprice, addonPrice, name);
+        const shoppingCart = addItemtoCart(
+          itemId,
+          baseprice,
+          addonPrice,
+          name,
+          packAmount,
+          packed
+        );
         updateShoppingCart(shoppingCart);
       } else {
         const shoppingCart = removeItemFromCart(itemId, name);
@@ -38,9 +53,24 @@ const Order = ({ foodItems }) => {
     }
   };
 
-  const addItemtoCart = (itemId, baseprice, addonPrice, name) => {
+  const addItemtoCart = (
+    itemId,
+    baseprice,
+    addonPrice,
+    name,
+    packAmount,
+    packed
+  ) => {
     const shoppingCart = getCartFromLocalStorage();
-    shoppingCart[itemId] = { itemId, name, quantity: 1, baseprice, addonPrice };
+    shoppingCart[itemId] = {
+      itemId,
+      name,
+      quantity: 1,
+      baseprice,
+      addonPrice,
+      packAmount,
+      packed,
+    };
     updateCartStorage(shoppingCart);
     const message = `you added 1 ${name} to cart, view cart to add more`;
     handleNotification("Added Item", message, "success");
@@ -74,6 +104,8 @@ const Order = ({ foodItems }) => {
                 category={item.category}
                 callback={updateCart}
                 available={item.available}
+                packAmount={item.packAmount}
+                packed={item.packed}
               />
             );
           })}

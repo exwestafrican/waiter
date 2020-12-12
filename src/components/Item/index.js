@@ -10,11 +10,23 @@ const Item = ({
   name,
   category,
   available,
+  packAmount,
+  packed,
 }) => {
   return (
     <div
       className={styles["item-component"]}
-      onClick={() => callback(itemId, baseprice, addonPrice, name, available)}
+      onClick={() =>
+        callback(
+          itemId,
+          baseprice,
+          addonPrice,
+          name,
+          available,
+          packAmount,
+          packed
+        )
+      }
     >
       <div className={styles["item-component_img"]}>
         {/* <img

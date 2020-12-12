@@ -7,12 +7,14 @@ export const currentResturant = () => {
 export const addResturantToLocalStorage = (
   resturantName,
   resturantId,
-  schoolName
+  schoolName,
+  external
 ) => {
   const value = JSON.stringify({
     resturantId,
     resturantName,
     schoolName,
+    external,
   });
   localStorage.setItem(RESTURANT, value);
 };
@@ -26,7 +28,7 @@ export const isOpen = () => {
   } else {
     const closingTime = new Date();
     const openingTime = new Date();
-    openingTime.setHours(9, 0);
+    openingTime.setHours(10, 0);
     closingTime.setHours(20, 30);
     const currentTime = new Date();
     if (

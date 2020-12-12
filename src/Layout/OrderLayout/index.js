@@ -9,6 +9,7 @@ import { apiPath } from "../../url";
 import Loader from "../../components/Loader";
 import { addResturantToLocalStorage } from "../../utils/resturant";
 import { createCart } from "../../utils/shoppingCart";
+import Alert from "../../components/Alert";
 
 const OrderLayout = () => {
   const [state, setState] = useState({
@@ -27,10 +28,12 @@ const OrderLayout = () => {
         isLoading: false,
       });
       createCart(param.id);
+      
       addResturantToLocalStorage(
         resturant[0].restaurantName,
         resturant[0].id,
-        resturant[0].schoolName
+        resturant[0].schoolName,
+        resturant[0].external
       );
     };
     getFoodItems();
@@ -56,6 +59,13 @@ const OrderLayout = () => {
         image={"https://cdn.filestackcontent.com/uSwJlPECTRq2s3vzpCFw"}
       />
       <section className="section-body">
+        <Alert
+          message={
+            "All Orders Debonairs order get delivered on Saturdays from 12pm to 2pm"
+          }
+          type={"warning"}
+        />
+
         <div className="container margin-top" style={{ position: "relative" }}>
           <Display />
         </div>

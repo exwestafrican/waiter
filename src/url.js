@@ -5,7 +5,7 @@ export const path = {
   checkout: "/order/checkout",
   login: "/login",
   signup: "/signup",
-  aboutUs:"/about"
+  aboutUs: "/about",
 };
 
 export const apiPath = {
@@ -17,3 +17,6 @@ export const apiPath = {
 };
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const WHATSAPP_BASE_URL = "https://wa.me/";
+export const CONTACT_US =
+  WHATSAPP_BASE_URL + process.env.REACT_APP_WHATSAPP_NUMBER;

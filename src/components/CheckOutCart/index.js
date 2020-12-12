@@ -6,8 +6,12 @@ import {
   shoppingCartList,
   itemTotal,
   checkoutTotal,
-  FEE,
+  posCharges,
+  getDeliveryCharge,
+  isPacked,
+  findMaxPackPrice,
 } from "../../utils/shoppingCart";
+import { storeInLocalStorage } from "../../utils/general";
 
 const CheckOutCart = () => {
   const resturant = currentResturant();
@@ -15,6 +19,42 @@ const CheckOutCart = () => {
   const total = checkoutTotal(shoppingCart);
   const cartList = shoppingCartList(shoppingCart);
   const itemCount = Object.keys(shoppingCart).length;
+  const packAmount = isPacked(cartList) ? findMaxPackPrice(cartList) : 0;
+  const deliveryCharge = getDeliveryCharge(resturant.external, "hostel");
+  const posCharge = posCharges(resturant.external, resturant.schoolName, total);
+
+  function ExtraCharges({ title, description, amount }) {
+    return (
+      <li className="list-group-item d-flex justify-content-between bg-light">
+        <div className="text-success">
+          <h6 className="my-0">{title}</h6>
+          <small>{description}</small>
+        </div>
+        <span className="text-success">₦ {amount}</span>
+      </li>
+    );
+  }
+
+  const charges = [
+    {
+      title: "POS",
+      description: "merchant charges pos fees",
+      amount: posCharge,
+    },
+    {
+      title: "Delivery Fee",
+      description: "how we generate revenue",
+      amount: deliveryCharge,
+    },
+    {
+      title: "Pack",
+      description: "where we keep your food",
+      amount: packAmount,
+    },
+  ];
+
+  const cartTotal = total + deliveryCharge + packAmount + posCharge;
+  storeInLocalStorage("charges", cartTotal - total);
 
   const Items = ({ name, addonPrice, quantity, baseprice }) => {
     const total = itemTotal(quantity, addonPrice, baseprice);
@@ -27,8 +67,9 @@ const CheckOutCart = () => {
       </li>
     );
   };
+
   return (
-    <>
+    <React.Fragment>
       <h4 className="d-flex justify-content-between align-items-center mb-3">
         <span className="text-muted">{resturant.resturantName}</span>
         <span className="badge badge-secondary badge-pill">{itemCount}</span>
@@ -43,19 +84,21 @@ const CheckOutCart = () => {
             baseprice={item.baseprice}
           />
         ))}
-        <li className="list-group-item d-flex justify-content-between bg-light">
-          <div className="text-success">
-            <h6 className="my-0">Pack Cost</h6>
-            <small>plus service charge</small>
-          </div>
-          <span className="text-success">₦{FEE} </span>
-        </li>
+
+        {charges.map((charge) => (
+          <ExtraCharges
+            title={charge.title}
+            description={charge.description}
+            amount={charge.amount}
+          />
+        ))}
+
         <li className="list-group-item d-flex justify-content-between">
           <span>Total (NGN)</span>
-          <strong>₦{total + FEE}</strong>
+          <strong>₦ {cartTotal}</strong>
         </li>
       </ul>
-    </>
+    </React.Fragment>
   );
 };
 

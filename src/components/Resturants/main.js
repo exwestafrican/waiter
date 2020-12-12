@@ -30,10 +30,13 @@ const Resturant = ({
     if (status === false) {
       console.log("here");
       e.preventDefault();
-      handleNotification("Error", "All resturants are closed");
+      handleNotification(
+        "CLOSED",
+        "All resturants open 10AM - 8:30PM monday to saturday please send us a dm @mobilewaiterng for more details"
+      );
     }
   };
- 
+
   return (
     <div>
       <Link

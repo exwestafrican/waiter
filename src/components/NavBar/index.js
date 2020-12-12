@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { path } from "../../url";
-import { Link } from "react-router-dom";
+import { path, CONTACT_US } from "../../url";
 import user from "../../auth";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { redirectHome, processToLogin } from "../../utils/general";
 
 const NavBar = () => {
@@ -61,9 +60,18 @@ const NavBar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
       </div>
-      <button className={btnColor} type="button" onClick={onClickHandler}>
+      {/* <button className={btnColor} type="button" onClick={onClickHandler}>
         {user.isAuthenticated() ? "Sign Out" : "Sign In"}
-      </button>
+      </button> */}
+      <a href={CONTACT_US}>
+        <button
+          className="negative ui button"
+          type="button"
+          onClick={onClickHandler}
+        >
+          Find My Food
+        </button>
+      </a>
       <div className={` ${display} navbar-collapse `} id="navbarNavDropdown">
         <ul className="navbar-nav">
           {pageLinks.map((link, index) => (

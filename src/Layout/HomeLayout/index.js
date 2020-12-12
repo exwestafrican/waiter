@@ -11,6 +11,7 @@ import Footer from "../../components/Footer";
 import Loader from "../../components/Loader";
 import NavBar from "../../components/NavBar";
 import SearchBar from "../../components/SearchBar";
+import Alert from "../../components/Alert";
 const HomeLayout = () => {
   const [state, setState] = useState({ resturant: [], isLoading: true });
 
@@ -41,6 +42,14 @@ const HomeLayout = () => {
         />
         <div className="margin-top">
           <SearchBar searchText={"Find Your Favourite Place...."} />
+        </div>
+        <div className="container margin-top">
+          <Alert
+            message={
+              "Want Some Deboniars Pizza this weekend, order now by CLICKING HERE!!"
+            }
+            link={"/order/debonairsPizza/17"}
+          />
         </div>
 
         <Categroies />
