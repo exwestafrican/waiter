@@ -21,7 +21,12 @@ const Banner = ({ bannerHeight, image, showNav = false }) => {
   };
   const Display = () => (showNav ? <NavBar /> : null);
 
-  return <div className={`${height} ${styles["banner"]}`}></div>;
+  return (
+    <div className={`${height} ${styles["banner"]}`}>
+      {/* {" "}
+      <Display />{" "} */}
+    </div>
+  );
 };
 
 export default Banner;

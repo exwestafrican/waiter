@@ -35,6 +35,7 @@ export const isOpen = () => {
       currentTime.getTime() < closingTime.getTime() &&
       currentTime.getTime() >= openingTime
     ) {
+      // true
       return true;
     } else {
       return false;

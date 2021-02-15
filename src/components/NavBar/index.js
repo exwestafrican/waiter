@@ -3,11 +3,11 @@ import { path, CONTACT_US } from "../../url";
 import user from "../../auth";
 import { useHistory, Link } from "react-router-dom";
 import { redirectHome, processToLogin } from "../../utils/general";
-
+import { findMyOrderMessage } from "../../utils/complaint";
 const NavBar = () => {
   const btnColor = user.isAuthenticated()
-    ? "negative ui button"
-    : "positive ui button";
+    ? "mini orange ui basic button"
+    : "mini positive ui basic button";
 
   const [navToggle, setNavToggle] = useState(false);
   const display = navToggle ? "" : "collapse";
@@ -60,18 +60,17 @@ const NavBar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
       </div>
-      {/* <button className={btnColor} type="button" onClick={onClickHandler}>
-        {user.isAuthenticated() ? "Sign Out" : "Sign In"}
-      </button> */}
-      <a href={CONTACT_US}>
-        <button
-          className="negative ui button"
-          type="button"
-          onClick={onClickHandler}
-        >
-          Find My Food
+      <div>
+        <a href={CONTACT_US + "?text=" + findMyOrderMessage}>
+          <button className="mini negative ui button" type="button">
+            Find My Food
+          </button>
+        </a>
+        <button className={btnColor} type="button" onClick={onClickHandler}>
+          {user.isAuthenticated() ? "Sign Out" : "Sign In"}
         </button>
-      </a>
+      </div>
+
       <div className={` ${display} navbar-collapse `} id="navbarNavDropdown">
         <ul className="navbar-nav">
           {pageLinks.map((link, index) => (
