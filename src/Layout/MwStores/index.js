@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar";
 import SearchBar from "../../components/SearchBar";
 import styles from "./styles.module.css";
 import { fetchStores } from "../../Api/MW-bot";
+import { isOpen } from "../../utils/resturant";
 
 function MwStores() {
   const [stores, setStores] = useState([]);
@@ -15,7 +16,7 @@ function MwStores() {
     };
     getStores();
   }, []);
-  
+
   return (
     <React.Fragment>
       <NavBar />
@@ -31,6 +32,7 @@ function MwStores() {
               deliveryTime={"30"}
               address={store.address}
               storeID={store.id}
+              status={isOpen()}
             />
           ))}
         </div>
