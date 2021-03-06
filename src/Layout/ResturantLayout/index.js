@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/NavBar";
+import NavBar from "../../components/NavBar";
 import Resturants from "../../components/Resturants";
 import Categroies from "../../components/Categories";
 import Footer from "../../components/Footer";
@@ -10,6 +10,7 @@ import { useRouteMatch } from "react-router-dom";
 import { fetchData } from "../../Api";
 import { apiPath } from "../../url";
 import Banner from "../../components/Banner";
+import Alert from "../../components/Alert";
 
 const ResturantLayout = () => {
   const param = useRouteMatch().params;
@@ -41,14 +42,22 @@ const ResturantLayout = () => {
 
   return (
     <>
-      <Navbar />
-      <Banner
+      <NavBar />
+      {/* <Banner
         image={"https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw"}
         showNav={false}
-      />
+      /> */}
       <section className="section-body margin-top">
         <SearchBar searchText={"Find Your Favourite Place...."} />
         <Categroies currentSchool={param.name} />
+        <div className="container margin-top">
+          <Alert
+            message={
+              "We know Some Deboniars Pizza this weekend, order now by CLICKING HERE!!"
+            }
+            link={"/order/debonairsPizza/17"}
+          />
+        </div>
         <div className={`${styles.margin} container`}>
           <Display />
         </div>

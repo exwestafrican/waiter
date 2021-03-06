@@ -1,0 +1,46 @@
+.title {
+  color: #4a4a4a;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+.content {
+  width: 60%;
+  text-align: justify;
+  margin: 1rem 0;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.space-between-links {
+  margin: 0 0.2rem;
+}
+.make-bold {
+  font-weight: 600;
+  color: #4a4a4a;
+}
+
+.step-description,
+.make-bold {
+  margin: 0;
+}
+
+.spacing {
+  margin: 1.5rem 0;
+}
+
+.spacing button,
+.spacing button:hover,
+.spacing button:focus {
+  width: 60%;
+}
+
+@media (max-width: 65rem) {
+  .content {
+    width: 100%;
+  }
+  .spacing button {
+    width: 100%;
+  }
+}

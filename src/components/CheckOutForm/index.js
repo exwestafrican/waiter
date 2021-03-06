@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Select from "../Select";
 import Input from "../Input";
+import BlockButton from "../BlockButton";
 import { currentResturant, isOpen } from "../../utils/resturant";
 import {
   getCartFromLocalStorage,
   checkoutTotal,
   ApiShoppingList,
-  FEE,
   emptyCart,
 } from "../../utils/shoppingCart";
+import { getItemFromLocalStorage } from "../../utils/general";
 import { handleNotification } from "../../utils/notification";
 import { makeOrder } from "../../Api";
 import { path } from "../../url";
@@ -40,17 +41,15 @@ const CheckOutForm = () => {
         customerId: userDetail.userId,
         restaurantId: resturant.resturantId,
         subTotal: subTotal,
-        fee: FEE,
+        fee: getItemFromLocalStorage("charges"),
         address: formData.get("address"),
         // did user select pay onnline
         onlinePayment:
           "Pay Online" === formData.get("paymentOption") ? true : false,
         itemList: [cartList],
       };
-      // empty cache
 
       setState({ ...state, loading: true });
-      // console.log(data);
       makeOrder(data, success, failed);
     } else {
       handleNotification("Error", "All Resturants are closed");
@@ -67,6 +66,11 @@ const CheckOutForm = () => {
       submit: true,
     });
     emptyCart();
+    handleNotification(
+      "Sucess",
+      "Your order was sucessfull so you in 30mins or less",
+      "success"
+    );
     setTimeout(redirectHome, 2000);
   };
 
@@ -78,7 +82,7 @@ const CheckOutForm = () => {
       text: "TRY AGAIN",
     });
   };
-  console.log(isOpen());
+
   return (
     <form onSubmit={handleSubmit}>
       <Input
@@ -121,13 +125,11 @@ const CheckOutForm = () => {
         required={true}
       />
       <div style={{ margin: "2rem 0" }}>
-        <button
-          type="submit"
-          className={`btn ${state.color} btn-lg btn-block`}
+        <BlockButton
+          name={state.loading === true ? "Loading..." : state.text}
+          buttonType={"submit"}
           disabled={state.submit ? true : false}
-        >
-          {state.loading === true ? "Loading..." : state.text}
-        </button>
+        />
       </div>
     </form>
   );

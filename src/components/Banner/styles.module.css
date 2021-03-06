@@ -1,11 +1,14 @@
 .banner {
   background: url(https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw),
-    radial-gradient(rgb(219, 216, 216), rgb(214, 211, 211));
+    radial-gradient(rgb(175, 173, 173), rgb(172, 168, 168));
   background-blend-mode: multiply;
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+.banner::before {
+  /* opacity: 0.1; */
 }
 .banner_height {
   height: 35vh;

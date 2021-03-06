@@ -11,6 +11,7 @@ import Footer from "../../components/Footer";
 import Loader from "../../components/Loader";
 import NavBar from "../../components/NavBar";
 import SearchBar from "../../components/SearchBar";
+import Alert from "../../components/Alert";
 const HomeLayout = () => {
   const [state, setState] = useState({ resturant: [], isLoading: true });
 
@@ -38,10 +39,17 @@ const HomeLayout = () => {
         <NavBar />
         <Banner
           image={"https://cdn.filestackcontent.com/gzje3d8TMWg8kJ1y94uw"}
-          showNav={false}
         />
         <div className="margin-top">
           <SearchBar searchText={"Find Your Favourite Place...."} />
+        </div>
+        <div className="container margin-top">
+          <Alert
+            message={
+              "Want Some Deboniars Pizza this weekend, order now by CLICKING HERE!!"
+            }
+            link={"/order/debonairsPizza/17"}
+          />
         </div>
 
         <Categroies />
@@ -50,10 +58,10 @@ const HomeLayout = () => {
         </div>
         <div className={`${styles.pagination} container`}>
           <Link
-            class="ui right labeled icon button green"
+            className="ui right labeled icon button green"
             to={path.resturantPage}
           >
-            <i class="right arrow icon"></i>
+            <i className="right arrow icon"></i>
             MORE RESTURANTS
           </Link>
         </div>

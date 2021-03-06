@@ -38,8 +38,8 @@ const MobileCart = ({ shoppingCart }) => {
         onClick={() => setDisplay(!display)}
       >
         <button type="button">
-          <span>{itemCount}</span>
-          <span>View Cart</span>
+          <span className={style["bold-text"]}>{itemCount}</span>
+          <span className={style["bold-text"]}>View Cart</span>
           <span></span>
         </button>
       </div>

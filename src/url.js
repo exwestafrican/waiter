@@ -2,9 +2,10 @@ export const path = {
   home: "/",
   resturantPage: "/resturants",
   order: "/order",
-  checkout: "/order/checkout",
+  checkout: "/stores/checkout",
   login: "/login",
   signup: "/signup",
+  aboutUs: "/about",
 };
 
 export const apiPath = {
@@ -15,4 +16,8 @@ export const apiPath = {
   signup: "/v1/signup",
 };
 
-export const BASE_URL = "https://mobile-waiter-staging.herokuapp.com";
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const MW_BASE_URL = process.env.REACT_WAITER_BOT_API;
+export const WHATSAPP_BASE_URL = "https://wa.me/";
+export const CONTACT_US =
+  WHATSAPP_BASE_URL + process.env.REACT_APP_WHATSAPP_NUMBER;

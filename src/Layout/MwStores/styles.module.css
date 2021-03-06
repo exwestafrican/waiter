@@ -1,0 +1,19 @@
+.banner_height {
+  height: 20vh;
+}
+
+.margin {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 65rem) {
+  .banner_height {
+    height: 20vh;
+  }
+  .margin {
+    justify-content: center;
+  }
+}

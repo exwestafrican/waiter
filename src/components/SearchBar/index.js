@@ -6,9 +6,9 @@ const SearchBar = ({ searchText }) => {
   const text = searchText ? searchText : "Search...";
   return (
     <div className={`container`}>
-      <div class="ui fluid icon input">
+      <div className="ui fluid icon input">
         <input type="text" placeholder={text} />
-        <i class="search icon"></i>
+        <i className="search icon"></i>
       </div>
     </div>
   );
