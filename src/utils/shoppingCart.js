@@ -154,3 +154,33 @@ export function findMaxPackPrice(items) {
 }
 
 export const processToCheckout = (history) => history.push(path.checkout);
+
+// ------------------ new stuff ----------------- //
+
+export const VENDOR_ID = "vendorID";
+export const CART = "cart";
+
+export function clearCart(id) {
+  const value = JSON.stringify([]);
+  localStorage.setItem(CART, value);
+}
+export function getOldVendor() {
+  const value = localStorage.getItem(VENDOR_ID);
+  if (value) return JSON.parse(value);
+  return "";
+}
+export function addStore(vendorID) {
+  const value = JSON.stringify(vendorID);
+  localStorage.setItem(VENDOR_ID, value);
+}
+
+export function updateCart(cart) {
+  const value = JSON.stringify(cart);
+  localStorage.setItem(CART, value);
+}
+
+export const LocalStorageCart = () => {
+  const value = localStorage.getItem(CART);
+  if (value) return JSON.parse(value);
+  return [];
+};

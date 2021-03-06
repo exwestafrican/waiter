@@ -1,0 +1,21 @@
+.resturant_name {
+  color: rgb(84, 84, 84);
+  text-decoration: none;
+  font-weight: 700;
+  margin: 0.8rem 0;
+  line-height: 20px;
+}
+
+.delivery_details {
+  text-decoration: none;
+  color: rgb(84, 84, 84);
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+  line-height: 20px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.resturant_name:hover,
+.delivery_details:hover {
+  text-decoration: none;
+}

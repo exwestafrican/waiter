@@ -66,9 +66,9 @@ const NavBar = () => {
             Find My Food
           </button>
         </a>
-        <button className={btnColor} type="button" onClick={onClickHandler}>
+        {/* <button className={btnColor} type="button" onClick={onClickHandler}>
           {user.isAuthenticated() ? "Sign Out" : "Sign In"}
-        </button>
+        </button> */}
       </div>
 
       <div className={` ${display} navbar-collapse `} id="navbarNavDropdown">
