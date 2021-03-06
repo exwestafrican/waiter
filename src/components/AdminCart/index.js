@@ -3,9 +3,13 @@ import BlockButton from "../BlockButton";
 import style from "./styles.module.css";
 import CartItem from "../CartItem";
 import CartContext from "../../context/cart-context";
+import { processToCheckout } from "../../utils/shoppingCart";
+
+import { useHistory } from "react-router-dom";
+
 function AdminCart({ store }) {
   const { cart_item } = useContext(CartContext);
-  console.log(cart_item);
+  const history = useHistory();
   return (
     <section className={`${style["cart-content"]}`}>
       <div className={style["cart-header"]}>
@@ -22,9 +26,10 @@ function AdminCart({ store }) {
           productID={product.product}
         />
       ))}
+
       <BlockButton
         name={"CHECK OUT"}
-        // callBack={() => processToCheckout(history)}
+        callBack={() => processToCheckout(history)}
       />
     </section>
   );

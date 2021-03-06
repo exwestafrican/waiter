@@ -1,69 +1,54 @@
 import React, { useEffect, useState } from "react";
-
 import AdminCartItem from "../AdminCartItems";
 import AdminCheckoutFees from "../AdminCheckoutFees";
-import { fetchCart } from "../../Api/MW-bot";
-import { useRouteMatch } from "react-router-dom";
-import AdminCheckoutForm from "../AdminCheckoutForrm";
-import Loader from "../Loader";
+import MwCheckOutForm from "../MwCheckOutForm";
 import styles from "./styles.module.css";
-function AdminCheckout() {
-  const param = useRouteMatch().params;
+import { LocalStorageCart } from "../../utils/shoppingCart";
+import NavBar from "../NavBar";
+
+function MwCart() {
   const [state, setState] = useState({
     products: [],
     total: 0,
-    fee: 0,
-    userDetail: {},
-    isLoading: true,
-    paymentLink: "",
+    fee: 100,
   });
-
-  function calTotal(items) {
-    let cartTotal = 0;
-    for (const item of items) {
-      let itemTotal = item.total;
-      cartTotal += itemTotal;
-    }
-    return cartTotal;
-  }
-
   function cartTotal(total, fees) {
     return total + fees;
   }
-
+  function calSubTotal(baseCharge, additionCharge, qty) {
+    return baseCharge + additionCharge * (qty - 1);
+  }
+  function cumulativeSum(list) {
+    return list.reduce((a, b) => a + b, 0);
+  }
   useEffect(() => {
-    const data = async () => {
-      const cart = await fetchCart(param.id);
-      const total = calTotal(cart.cart_item);
-      setState({
-        ...state,
-        products: cart.cart_item,
-        total: total,
-        fee: cart.fees,
-        isLoading: false,
-        paymentLink: cart.payment_link,
-        userDetail: {
-          name: cart.name,
-          phoneNumber: cart.contact,
-          address: cart.delivery_address,
-          email: cart.email,
-        },
-      });
-    };
-    data();
+    const cartItems = LocalStorageCart();
+    const productList = cartItems.map((product) => {
+      return {
+        product: product.product,
+        quantity: product.quantity,
+        product_name: product.product_name,
+        total: calSubTotal(
+          product.baseCharge,
+          product.additionCharge,
+          product.quantity
+        ),
+      };
+    });
+    const subTotals = productList.map((product) => product.total);
+    setState({
+      ...state,
+      total: cumulativeSum(subTotals),
+      products: productList,
+    });
   }, []);
 
-  return state.isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <React.Fragment>
+      <NavBar />
       <div className={`${styles.split} container marign-top section-body`}>
         <div className={`${styles["left-content"]}`}>
-          <AdminCheckoutForm
-            key={1}
-            userDetail={state.userDetail}
-            paymentLink={state.paymentLink}
-          />
+          <MwCheckOutForm products={state.products} />;
         </div>
         <div className={styles["right-content"]}>
           <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -75,7 +60,7 @@ function AdminCheckout() {
           <ul className="list-group mb-3">
             {state.products.map((product) => (
               <AdminCartItem
-                key={product.id}
+                key={product.product}
                 name={product.product_name}
                 total={product.total}
               />
@@ -96,4 +81,4 @@ function AdminCheckout() {
   );
 }
 
-export default AdminCheckout;
+export default MwCart;

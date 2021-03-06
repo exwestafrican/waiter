@@ -3,9 +3,9 @@ import Select from "../Select";
 import Input from "../Input";
 import BlockButton from "../BlockButton";
 
-function AdminCheckoutForm({ userDetail }) {
+function AdminCheckoutForm({ userDetail, paymentLink }) {
   const { name, phoneNumber, address, email } = userDetail;
-
+  // console.log(paymentLink);
   function handleSubmit() {}
   return (
     <form onSubmit={handleSubmit}>
@@ -53,13 +53,9 @@ function AdminCheckoutForm({ userDetail }) {
         prefilledValue={address}
         disabled={true}
       />
-      <div style={{ margin: "2rem 0" }}>
-        <BlockButton
-          name={"Confirm And Pay"}
-          buttonType={"submit"}
-          disabled={false}
-        />
-      </div>
+      <a target="_blank" href={paymentLink} style={{ margin: "2rem 0" }}>
+        <BlockButton name={"Confirm And Pay"} disabled={false} />
+      </a>
     </form>
   );
 }

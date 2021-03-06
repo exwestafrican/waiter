@@ -2,7 +2,7 @@ export const path = {
   home: "/",
   resturantPage: "/resturants",
   order: "/order",
-  checkout: "/order/checkout",
+  checkout: "/stores/checkout",
   login: "/login",
   signup: "/signup",
   aboutUs: "/about",

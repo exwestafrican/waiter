@@ -1,11 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import styles from "./styles.module.css";
 import BlockButton from "../BlockButton";
 import CartContext from "../../context/cart-context";
 import CartItem from "../CartItem";
+import { processToCheckout } from "../../utils/shoppingCart";
+import { useHistory } from "react-router-dom";
 
 function CartModal() {
   const { modalDisplay, setModalDisplay, cart_item } = useContext(CartContext);
+  const history = useHistory();
   return (
     <div className="modal " style={{ display: modalDisplay }}>
       <div
@@ -40,7 +43,7 @@ function CartModal() {
           <div className={` ${styles["cart-modal-checkout"]} modal-footer`}>
             <BlockButton
               name={"CHECK OUT"}
-              //   callBack={() => processToCheckout(history)}
+              callBack={() => processToCheckout(history)}
             />
           </div>
         </div>

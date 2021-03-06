@@ -3,10 +3,7 @@ import "./App.css";
 import HomeLayout from "./Layout/HomeLayout";
 import { path } from "./url";
 import ResturantLayout from "./Layout/ResturantLayout";
-import LoginLayout from "./Layout/LoginLayout";
-import SignUpLayout from "./Layout/SignUpLayout";
-import OrderLayout from "./Layout/OrderLayout";
-import ImageUpload from "./Layout/FileStackLayout";
+import MwCart from "./components/MwCart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -34,6 +31,7 @@ function App() {
             component={Store}
           ></Route>
           <Route path={"/stores"} exact component={MwStores}></Route>
+          <Route path={"/stores/checkout"} exact component={MwCart}></Route>
         </Switch>
       </Router>
     </div>

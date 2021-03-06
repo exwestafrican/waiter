@@ -21,7 +21,8 @@ export const fetchCart = async (id, method = "GET") => {
 
 export const fetchStoreProducts = async (id, method = "GET") => {
   const response = await fetch(
-    MW_BASE_URL + "/stores/" + id + "/view_products"
+    MW_BASE_URL + "/stores/" + id + "/view_products",
+    Config(method)
   );
   if (response.ok) {
     const jsonResponse = await response.json();
@@ -30,9 +31,21 @@ export const fetchStoreProducts = async (id, method = "GET") => {
 };
 
 export const fetchStores = async (method = "GET") => {
-  const response = await fetch(MW_BASE_URL + "/stores");
+  const response = await fetch(MW_BASE_URL + "/stores", Config(method));
   if (response.ok) {
     const jsonResponse = await response.json();
+    if (jsonResponse.success === true) return jsonResponse.data;
+  }
+};
+
+export const createCart = async (payload, method = "POST") => {
+  const response = await fetch(MW_BASE_URL + "/carts/", {
+    ...Config(method),
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const jsonResponse = await response.json();
+    // console.log(jsonResponse);
     if (jsonResponse.success === true) return jsonResponse.data;
   }
 };
