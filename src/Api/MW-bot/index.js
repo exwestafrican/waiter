@@ -1,6 +1,6 @@
 // import { MW_BASE_URL } from "../../url";
 
-const MW_BASE_URL = "http://127.0.0.1:8000/api/v1";
+const MW_BASE_URL = "https://mw-bot-staging.herokuapp.com/api/v1";
 
 const Config = (method) => {
   return {
